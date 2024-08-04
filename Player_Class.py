@@ -33,12 +33,15 @@ class Player:
 
     def __str__(self) -> str:
         return f'{self.name} has {self.bank} in their account!'
-    
+
+
+if __name__ == '__main__':
+    print('Please run Game_Class!')
+
+
 '''
 player_one = Player('One')
 player_one.place_bet()
 '''
 
-if __name__ == '__main__':
-    print('Please run Game_Class!')
 
