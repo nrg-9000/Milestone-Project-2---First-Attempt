@@ -21,6 +21,5 @@ class Card:  # Giving () in a class definition is not mandatory but also not wro
     def __str__(self) -> str:
         return f'The {self.rank} of {self.suit}.'
     
-
-
-    
+if __name__ == '__main':
+    print('Please run Game_Class!')    
