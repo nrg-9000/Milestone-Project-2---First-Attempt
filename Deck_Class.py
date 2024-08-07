@@ -34,7 +34,23 @@ class Deck:
         shuffle(self.all_cards)
 
 
-    def 
+    def player_start(self):
+        return self.all_cards.pop(0,1)  # This will be added to the Player's hand and printed out
+    
+    
+    def dealer_start(self):
+        return self.all_cards.pop(0,1)  # This will be added to the dealer's hand but one one will be printed out 
+    
+    def hit(self):
+        return self.all_cards.pop(0)  # This will hand out one card
+    
+    def stay(self):
+        return False  # This will end the while loop of the game and end the present hand
+    
+    
+    def reset(self):
+        self.all_cards = []  # This will reset the deck for the next round
+
 
     def __str__(self) -> str:  # This is to return a statement if the deck is called directly
         return f'There are {len(self.all_cards)} cards in the deck!'
