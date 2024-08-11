@@ -12,6 +12,9 @@ class Player:
         self.bank = 10000
         print(f'Hi {self.name}!')
 
+    def balance_check(self):  # This is to check if the player has enough balance to continue the game
+        return self.bank
+
     def place_bet(self):
         print(f'You have {self.bank} in your account')
         
@@ -25,12 +28,18 @@ class Player:
                 continue
 
             else:
-                if amount > self.bank:
-                    print(f'You do not have enough balance in your account. Present balance is {self.bank}')
-                else:
+                if amount <= self.bank and amount > 0:
                     print('Bet accepted!')
+                    self.bank -= amount
                     return amount
                     break
+                elif amount > self.bank:
+                    print(f'You do not have enough balance in your account. Present balance is {self.bank}')
+                    continue
+                elif amount <= 0:
+                    print('Please enter a positive, non-zero amount')
+                    continue             
+
 
     def bet_back(self, bet):  # This is to get back the original bet amount incase of a draw
         self.bank = self.bank + bet  

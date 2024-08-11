@@ -34,13 +34,29 @@ dealer_hand = []
 # Creating a round number to keep track
 round_number = 0
 
+
+# Checking if player has enough account balance to continue round
+while True:
+    if current_player.balance_check() > 0:
+        break    
+    else:
+        end_condition ### Player does not have enough balance
+
+
+
 # Starting a new round
 round_number += 1
 print(f'Round Number {round_number}')
 
+
+# Initialising player hand
 player_hand.extend(game_deck.player_start())
 print(f'Player has {player_hand}.')
-dealer_hand = game_deck.dealer_start()
+
+
+# Initialising dealer hand
+dealer_hand.extend(game_deck.dealer_start())
+print(f'Dealer')
 
 
 # Main game logic for player

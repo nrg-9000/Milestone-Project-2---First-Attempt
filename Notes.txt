@@ -11,8 +11,9 @@ Dealer turn runs
 If player wins - double their money
 If player loses - loses the money
 Game end conditions:
-1. Dealer wins
-2. Dealer loses
-3. Draw condition
-4. Player wins
-5. Player does not have enough account balance
+
+Player goes bust
+Dealer wins
+Dealer loses
+Draw condition
+Player does not have enough account balance for next round
