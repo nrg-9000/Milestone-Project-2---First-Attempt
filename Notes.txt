@@ -1,0 +1,18 @@
+GAME CLASS LOGIC:
+
+Game will start with the creation of a Deck
+The deck will be shuffled
+Player will make bet
+Player start
+Dealer start
+Hit or Stay cycle for the Player
+Player turn ends with Stay
+Dealer turn runs
+If player wins - double their money
+If player loses - loses the money
+Game end conditions:
+1. Dealer wins
+2. Dealer loses
+3. Draw condition
+4. Player wins
+5. Player does not have enough account balance

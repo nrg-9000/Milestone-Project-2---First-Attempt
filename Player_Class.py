@@ -32,7 +32,7 @@ class Player:
                     return amount
                     break
 
-    def bet_back(self, bet):  # This is to get back the original bet amount
+    def bet_back(self, bet):  # This is to get back the original bet amount incase of a draw
         self.bank = self.bank + bet  
         
         
@@ -52,5 +52,3 @@ if __name__ == '__main__':
 player_one = Player('One')
 player_one.place_bet()
 '''
-
-
