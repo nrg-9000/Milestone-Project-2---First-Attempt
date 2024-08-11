@@ -35,15 +35,17 @@ class Deck:
 
 
     def player_start(self):
-        return self.all_cards.pop(0,1)  # This will be added to the Player's hand and printed out
+        return self.all_cards.pop(0), self.all_cards.pop(0)  # This will be added to the Player's hand and printed out
     
     
     def dealer_start(self):
-        return self.all_cards.pop(0,1)  # This will be added to the dealer's hand but one one will be printed out 
+        return self.all_cards.pop(0), self.all_cards.pop(0)  # This will be added to the dealer's hand but one one will be printed out 
     
+
     def hit(self):
-        return self.all_cards.pop(0)  # This will hand out one card
+        return self.all_cards.pop(0),   # This will hand out one card
     
+
     def stay(self):
         return False  # This will end the while loop of the game and end the present hand
     
