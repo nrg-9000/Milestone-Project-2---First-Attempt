@@ -31,7 +31,13 @@ player_hand = []
 dealer_hand = []
 
 
+# Creating a round number to keep track
+round_number = 0
+
 # Starting a new round
+round_number += 1
+print(f'Round Number {round_number}')
+
 player_hand.extend(game_deck.player_start())
 print(f'Player has {player_hand}.')
 dealer_hand = game_deck.dealer_start()
