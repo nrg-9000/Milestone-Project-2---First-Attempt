@@ -18,8 +18,12 @@ class Card:  # Giving () in a class definition is not mandatory but also not wro
         self.rank = rank
         self.value = value[rank]
 
+
     def __str__(self) -> str:
-        return f'The {self.rank} of {self.suit}.'
+        return f'The {self.rank} of {self.suit}'
+    
+    def __repr__(self):
+        return self.__str__()
     
 if __name__ == '__main':
     print('Please run Game_Class!')    
