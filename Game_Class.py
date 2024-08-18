@@ -22,10 +22,6 @@ player_name = Logic_Class.player_name_func()
 current_player = Player_Class.Player(player_name)
 
 
-# Take a bet amount from the Player
-bet_amount = current_player.place_bet()
-
-
 # Creating hand for both player and dealer
 player_hand = []
 dealer_hand = []
@@ -33,31 +29,39 @@ dealer_hand = []
 
 # Creating a round number to keep track
 round_number = 0
+game_on = True
 
 
-# Checking if player has enough account balance to continue round
-while True:
-    if current_player.balance_check() > 0:
-        break    
+while game_on == True:
+
+
+    # Checking if player has enough account balance to continue round
+    if current_player.balance_check() <= 0:
+        print(f'{player_name} does not have enough balance in their account')
+        game_on = False
+        break
     else:
-        end_condition ### Player does not have enough balance
+        pass
 
 
-
-# Starting a new round
-round_number += 1
-print(f'Round Number {round_number}')
-
-
-# Initialising player hand
-player_hand.extend(game_deck.player_start())
-print(f'Player has {player_hand}.')
+    # Starting a new round
+    round_number += 1
+    print(f'Round Number {round_number}')
 
 
-# Initialising dealer hand
-dealer_hand.extend(game_deck.dealer_start())
-print(f'Dealer')
+    # Player will make a bet
+    bet_amount = current_player.place_bet()
 
 
-# Main game logic for player
+    # Initialising player hand
+    player_hand.extend(game_deck.player_start())
+    print(f'Player has {player_hand[0]} and {player_hand[1]}.')
+
+
+    # Initialising dealer hand
+    dealer_hand.extend(game_deck.dealer_start())
+    print(f'Dealer has {dealer_hand[0]} and *HIDDEN CARD*.')
+
+
+    # Main game logic for player
 
