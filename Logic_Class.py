@@ -1,5 +1,7 @@
 # This file will contain the check logic of the game to not lengthen the Game Class and increase readability
 
+import Card_Class
+
 def player_name_func():
     while True:
         try:
@@ -10,5 +12,10 @@ def player_name_func():
             continue
 
         else:
-            print(f'Welcome to the game {player_name}!')
             return player_name
+        
+def values_sum(values):
+    total_sum = 0
+    for i in values:
+        total_sum += i.card_value()
+    return total_sum

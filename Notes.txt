@@ -17,3 +17,8 @@ Dealer wins
 Dealer loses
 Draw condition
 Player does not have enough account balance for next round
+
+
+# Ace dynamic value yet to be implemented
+# Will need a way to progress to next round - another outer loop?
+

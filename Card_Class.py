@@ -18,6 +18,10 @@ class Card:  # Giving () in a class definition is not mandatory but also not wro
         self.rank = rank
         self.value = value[rank]
 
+    
+    def card_value(self):
+        return self.value
+
 
     def __str__(self) -> str:
         return f'The {self.rank} of {self.suit}'

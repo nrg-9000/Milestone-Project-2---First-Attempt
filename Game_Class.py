@@ -27,13 +27,14 @@ player_hand = []
 dealer_hand = []
 
 
-# Creating a round number to keep track
+# Initialising variables
 round_number = 0
 game_on = True
+player_choice = False
+player_value = 0
 
 
 while game_on == True:
-
 
     # Checking if player has enough account balance to continue round
     if current_player.balance_check() <= 0:
@@ -56,12 +57,34 @@ while game_on == True:
     # Initialising player hand
     player_hand.extend(game_deck.player_start())
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
-
+    
 
     # Initialising dealer hand
     dealer_hand.extend(game_deck.dealer_start())
     print(f'Dealer has {dealer_hand[0]} and *HIDDEN CARD*.')
 
 
-    # Main game logic for player
+    # Main game logic for player - player has to choose between HIT or STAY
+    while True:
+        try:
+            player_choice = input('Do you want to Hit or Stay? (H/S): ')
+            player_choice = player_choice.upper()
 
+        except:
+            print('That is not a valid choice. Please try again')
+
+        else:
+            if player_choice == 'H': 
+                player_hand.extend(game_deck.hit()) # Adding another card
+                print(f'Player Hand: {player_hand}')
+
+                if Logic_Class.values_sum(player_hand) >= 21: #Checking to see if Player is bust
+                    print(f'{player_name} is bust. Round END!!!')
+                    game_on = False
+                    break
+                else:
+                    continue
+            elif player_choice == 'S':        
+                break
+            else:
+                print('That is not a valid choice. Please try again')
