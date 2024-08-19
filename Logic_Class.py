@@ -19,3 +19,4 @@ def values_sum(values):
     for i in values:
         total_sum += i.card_value()
     return total_sum
+

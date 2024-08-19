@@ -79,7 +79,7 @@ while game_on == True:
                 print(f'Player Hand: {player_hand}')
 
                 if Logic_Class.values_sum(player_hand) >= 21: #Checking to see if Player is bust
-                    print(f'{player_name} is bust. Round END!!!')
+                    print(f'{player_name} is bust. Player Loses!') ### END CONDITION
                     game_on = False
                     break
                 else:
@@ -88,3 +88,43 @@ while game_on == True:
                 break
             else:
                 print('That is not a valid choice. Please try again')
+
+
+    # Checking flag to break outer while loop
+    if not game_on: 
+        break
+
+
+    # Main logic for dealer - Dealer will keep hitting until win or bust
+
+    print('Dealer will go next')
+    print(f'Dealer has {dealer_hand[0]} and {dealer_hand[1]}.')
+    
+    if Logic_Class.values_sum(player_hand) < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won in first hand
+        print('Dealer wins! Player Loses!') ### END CONDITION
+        game_on = False
+        break
+    
+    while True:
+        if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust
+            print('Dealer is bust. Player wins!!!') ### END CONDITION
+            game_on = False
+            break
+
+        else:
+            print('Dealer Hit!')
+            dealer_hand.extend(game_deck.hit()) # Adding another card
+            print(f'Dealer Hand: {dealer_hand}')
+
+            if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust
+                print('Dealer is bust. Player wins!!!') ### END CONDITION
+                game_on = False
+                break
+            elif Logic_Class.values_sum(player_hand) < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won
+                print('Dealer wins! Player Loses!') ### END CONDITION
+                game_on = False
+                break
+            else:
+                continue
+
+    
