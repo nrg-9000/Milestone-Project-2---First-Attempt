@@ -78,6 +78,7 @@ while game_on == True:
                 player_hand.extend(game_deck.hit()) # Adding another card
                 print(f'Player Hand: {player_hand}')
 
+
                 if Logic_Class.values_sum(player_hand) >= 21: #Checking to see if Player is bust
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
                     game_on = False

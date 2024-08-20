@@ -22,3 +22,7 @@ Player does not have enough account balance for next round
 # Ace dynamic value yet to be implemented
 # Will need a way to progress to next round - another outer loop?
 
+## I need to track the number of aces in the hand
+## I need to start with ace value 11
+## If the total value exceeds 21, then I keep subtracting 10 the number of times there are aces in the hand until it is not a bust anymore
+
