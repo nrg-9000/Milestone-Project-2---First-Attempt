@@ -32,6 +32,8 @@ round_number = 0
 game_on = True
 player_choice = False
 player_value = 0
+inhand_aces = 0
+hand_value = 0
 
 
 while game_on == True:
@@ -56,6 +58,11 @@ while game_on == True:
 
     # Initialising player hand
     player_hand.extend(game_deck.player_start())
+
+    # Checking for Aces in first hand
+    if player_hand[0].card_rank() == 'Ace' or player_hand[1].card_rank() == 'Ace':
+        inhand_aces += 1
+
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
     
 
@@ -76,13 +83,34 @@ while game_on == True:
         else:
             if player_choice == 'H': 
                 player_hand.extend(game_deck.hit()) # Adding another card
+
+                print(player_hand[-1].card_rank()) ### Test
+
+
+                # Keeping count of the number of Aces in the present hand
+                if player_hand[-1].card_rank() == 'Ace':
+                    inhand_aces += 1
+
+
                 print(f'Player Hand: {player_hand}')
 
 
                 if Logic_Class.values_sum(player_hand) >= 21: #Checking to see if Player is bust
+                    
+                    # Logic to change Aces from 11 to 1
+                    hand_value = Logic_Class.values_sum(player_hand)
+                    if inhand_aces != 0:
+                        while hand_value >= 21 and inhand_aces != 0:
+                            hand_value -= 10
+                            inhand_aces -= 1
+                            continue
+                    
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
                     game_on = False
+                    print(inhand_aces)
                     break
+                    
+
                 else:
                     continue
             elif player_choice == 'S':        

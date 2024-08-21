@@ -5,10 +5,10 @@
 
 # Creating the dictionaries
 suit = ('Spades', 'Hearts', 'Diamonds', 'Clubs')
-rank = ('Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Queen', ' King', 'Jack')
+rank = ('Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Queen', 'King', 'Jack')
 
 # The Ace card value definition has to be in the Game function depending on the player's current hand
-value = {'Ace': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10, 'Queen': 10, ' King': 10, 'Jack': 10}
+value = {'Ace': 11, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10, 'Queen': 10, 'King': 10, 'Jack': 10}
 
 # Starting the Card Class
 class Card:  # Giving () in a class definition is not mandatory but also not wrong
@@ -21,6 +21,10 @@ class Card:  # Giving () in a class definition is not mandatory but also not wro
     
     def card_value(self):
         return self.value
+    
+
+    def card_rank(self):
+        return self.rank
 
 
     def __str__(self) -> str:
