@@ -60,11 +60,15 @@ while game_on == True:
     player_hand.extend(game_deck.player_start())
 
     # Checking for Aces in first hand
-    if player_hand[0].card_rank() == 'Ace' or player_hand[1].card_rank() == 'Ace':
+    if str(player_hand[0].card_rank()) == 'Ace' or str(player_hand[1].card_rank()) == 'Ace':
         inhand_aces += 1
+
+    print(inhand_aces) ### Test
 
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
     
+    print(type(player_hand[0].card_rank())) ### TEST
+    print(repr(player_hand[-1].card_rank())) ### TEST
 
     # Initialising dealer hand
     dealer_hand.extend(game_deck.dealer_start())
@@ -85,34 +89,41 @@ while game_on == True:
                 player_hand.extend(game_deck.hit()) # Adding another card
 
                 print(player_hand[-1].card_rank()) ### Test
+                
+                print(Logic_Class.values_sum(player_hand)) ###TEST
 
 
                 # Keeping count of the number of Aces in the present hand
-                if player_hand[-1].card_rank() == 'Ace':
+                if str(player_hand[-1].card_rank()) == 'Ace':
                     inhand_aces += 1
 
+                print(inhand_aces) ### Test
 
 
                 print(f'Player Hand: {player_hand}')
 
+                hand_value = Logic_Class.values_sum(player_hand)
 
-                if Logic_Class.values_sum(player_hand) >= 21: #Checking to see if Player is bust
+
+                if hand_value >= 21: #Checking to see if Player is bust
                     
                     # Logic to change Aces from 11 to 1
-                    hand_value = Logic_Class.values_sum(player_hand)
                     if inhand_aces != 0:
                         while hand_value >= 21 and inhand_aces != 0:
                             hand_value -= 10
                             inhand_aces -= 1
                             continue
+                        if hand_value < 21:
+                            continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
+                    print(Logic_Class.values_sum(player_hand)) ###TEST
                     game_on = False
-                    print(inhand_aces)
                     break
                     
 
                 else:
+                    print(Logic_Class.values_sum(player_hand)) ###TEST
                     continue
             elif player_choice == 'S':        
                 break

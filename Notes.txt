@@ -27,3 +27,5 @@ Player does not have enough account balance for next round
 ## If the total value exceeds 21, then I keep subtracting 10 the number of times there are aces in the hand until it is not a bust anymore
 
 ### Inhand aces is not increasing
+
+### Very close but there is something wrong with the logic 
