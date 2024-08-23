@@ -59,9 +59,11 @@ while game_on == True:
     # Initialising player hand
     player_hand.extend(game_deck.player_start())
 
+    ''' This is not required anymore as we are counting aces everytime
     # Checking for Aces in first hand
     if str(player_hand[0].card_rank()) == 'Ace' or str(player_hand[1].card_rank()) == 'Ace':
         inhand_aces += 1
+    '''
 
     print(inhand_aces) ### Test
 
@@ -92,10 +94,10 @@ while game_on == True:
                 
                 print(Logic_Class.values_sum(player_hand)) ###TEST
 
-
-                # Keeping count of the number of Aces in the present hand
-                if str(player_hand[-1].card_rank()) == 'Ace':
-                    inhand_aces += 1
+                # Checking for Aces in hand
+                for i in player_hand:
+                    if i.card_rank() == 'Ace':
+                        inhand_aces += 1
 
                 print(inhand_aces) ### Test
 
@@ -114,6 +116,7 @@ while game_on == True:
                             inhand_aces -= 1
                             continue
                         if hand_value < 21:
+                            hand_value = 0
                             continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
@@ -124,9 +127,31 @@ while game_on == True:
 
                 else:
                     print(Logic_Class.values_sum(player_hand)) ###TEST
+                    inhand_aces = 0
                     continue
-            elif player_choice == 'S':        
+            elif player_choice == 'S':
+
+                for i in player_hand:
+                    if i.card_rank() == 'Ace':
+                        inhand_aces += 1
+
+                print(inhand_aces) ### Test
+
+                hand_value = Logic_Class.values_sum(player_hand)
+
+
+                
+                    
+                # Logic to change Aces from 11 to 1
+                if inhand_aces != 0:
+                    while inhand_aces != 0:
+                         hand_value -= 10
+                         inhand_aces -= 1
+                         continue
+                     
                 break
+            elif player_choice == 'P': ###TEST
+                print(Logic_Class.values_sum(player_hand))
             else:
                 print('That is not a valid choice. Please try again')
 
