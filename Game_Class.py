@@ -150,6 +150,8 @@ while game_on == True:
         break
     
     while True:
+
+        dealer_value = Logic_Class.values_sum(dealer_hand) # This is to keep checking value consistant and avoid infinite
         if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust ## Endless loop as we are not comapring dealer value but the actual value
            
             # Checking for Aces in dealer hand
@@ -160,8 +162,6 @@ while game_on == True:
             print(dealer_aces) ### Test
 
             print(f'Dealer Hand: {dealer_hand}') ### TEST
-
-            dealer_value = Logic_Class.values_sum(dealer_hand)
 
 
             if dealer_value >= 21: #Checking to see if Dealer is bust
