@@ -53,14 +53,27 @@ while game_on == True:
     round_number += 1
     print(f'Round Number {round_number}')
 
+
     # Player will make a bet
     bet_amount = current_player.place_bet()
+
 
     # Initialising player hand
     player_hand.extend(game_deck.player_start())
 
+    ''' This is not required anymore as we are counting aces everytime
+    # Checking for Aces in first hand
+    if str(player_hand[0].card_rank()) == 'Ace' or str(player_hand[1].card_rank()) == 'Ace':
+        inhand_aces += 1
+    '''
+
+    print(inhand_aces) ### Test
+
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
     
+    print(type(player_hand[0].card_rank())) ### TEST
+    print(repr(player_hand[-1].card_rank())) ### TEST
+
     # Initialising dealer hand
     dealer_hand.extend(game_deck.dealer_start())
     print(f'Dealer has {dealer_hand[0]} and *HIDDEN CARD*.')
@@ -79,14 +92,22 @@ while game_on == True:
             if player_choice == 'H': 
                 player_hand.extend(game_deck.hit()) # Adding another card
 
+                print(player_hand[-1].card_rank()) ### Test
+                
+                print(Logic_Class.values_sum(player_hand)) ###TEST
+
                 # Checking for Aces in hand
                 for i in player_hand:
                     if i.card_rank() == 'Ace':
                         inhand_aces += 1
 
+                print(inhand_aces) ### Test
+
+
                 print(f'Player Hand: {player_hand}')
 
                 hand_value = Logic_Class.values_sum(player_hand)
+
 
                 if hand_value >= 21: #Checking to see if Player is bust
                     
@@ -101,22 +122,26 @@ while game_on == True:
                             continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
+                    print(Logic_Class.values_sum(player_hand)) ###TEST
                     game_on = False
                     break
                     
 
                 else:
+                    print(Logic_Class.values_sum(player_hand)) ###TEST
                     inhand_aces = 0
                     continue
-
             elif player_choice == 'S':
 
                 for i in player_hand:
                     if i.card_rank() == 'Ace':
                         inhand_aces += 1
 
+                print(inhand_aces) ### Test
+
                 hand_value = Logic_Class.values_sum(player_hand)
 
+                    
                 # Logic to change Aces from 11 to 1
                 if inhand_aces != 0:
                     while inhand_aces != 0:
@@ -125,10 +150,8 @@ while game_on == True:
                          continue
                      
                 break
-
             elif player_choice == 'P': ###TEST
                 print(Logic_Class.values_sum(player_hand))
-
             else:
                 print('That is not a valid choice. Please try again')
 
@@ -150,7 +173,7 @@ while game_on == True:
         break
     
     while True:
-        if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust ## Endless loop as we are not comapring dealer value but the actual value
+        if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust
            
             # Checking for Aces in dealer hand
             for i in dealer_hand:
