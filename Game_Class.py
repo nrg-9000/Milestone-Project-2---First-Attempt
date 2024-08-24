@@ -34,6 +34,8 @@ player_choice = False
 player_value = 0
 inhand_aces = 0
 hand_value = 0
+dealer_aces = 0
+dealer_value = 0
 
 
 while game_on == True:
@@ -116,7 +118,7 @@ while game_on == True:
                             inhand_aces -= 1
                             continue
                         if hand_value < 21:
-                            hand_value = 0
+                            inhand_aces = 0
                             continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
@@ -139,8 +141,6 @@ while game_on == True:
 
                 hand_value = Logic_Class.values_sum(player_hand)
 
-
-                
                     
                 # Logic to change Aces from 11 to 1
                 if inhand_aces != 0:
@@ -166,13 +166,38 @@ while game_on == True:
     print('Dealer will go next')
     print(f'Dealer has {dealer_hand[0]} and {dealer_hand[1]}.')
     
-    if Logic_Class.values_sum(player_hand) < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won in first hand
+    #Checking to see if Dealer has won in first hand
+    if hand_value < Logic_Class.values_sum(dealer_hand): # Comparing with 'hand_value' to adjust for aces
         print('Dealer wins! Player Loses!') ### END CONDITION
         game_on = False
         break
     
     while True:
         if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust
+           
+            # Checking for Aces in dealer hand
+            for i in dealer_hand:
+                if i.card_rank() == 'Ace':
+                    dealer_aces += 1
+
+            print(dealer_aces) ### Test
+
+            print(f'Dealer Hand: {dealer_hand}') ### TEST
+
+            dealer_value = Logic_Class.values_sum(dealer_hand)
+
+
+            if dealer_value >= 21: #Checking to see if Dealer is bust
+                
+                # Logic to change Aces from 11 to 1
+                if dealer_aces != 0:
+                    while dealer_value >= 21 and dealer_aces != 0:
+                        dealer_value -= 10
+                        dealer_aces -= 1
+                        continue
+                    if dealer_value < 21:
+                        # dealer_value = 0
+                        continue
             print('Dealer is bust. Player wins!!!') ### END CONDITION
             game_on = False
             break
@@ -183,10 +208,34 @@ while game_on == True:
             print(f'Dealer Hand: {dealer_hand}')
 
             if Logic_Class.values_sum(dealer_hand) >= 21: #Checking to see if Dealer is bust
+
+                # Checking for Aces in dealer hand
+                for i in dealer_hand:
+                    if i.card_rank() == 'Ace':
+                        dealer_aces += 1
+
+                print(dealer_aces) ### Test
+
+                print(f'Dealer Hand: {dealer_hand}') ### TEST
+
+                dealer_value = Logic_Class.values_sum(dealer_hand)
+
+
+                if dealer_value >= 21: #Checking to see if Dealer is bust
+                    
+                    # Logic to change Aces from 11 to 1
+                    if dealer_aces != 0:
+                        while dealer_value >= 21 and dealer_aces != 0:
+                            dealer_value -= 10
+                            dealer_aces -= 1
+                            continue
+                        if dealer_value < 21:
+                            dealer_aces = 0
+                            continue
                 print('Dealer is bust. Player wins!!!') ### END CONDITION
                 game_on = False
                 break
-            elif Logic_Class.values_sum(player_hand) < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won
+            elif hand_value < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won
                 print('Dealer wins! Player Loses!') ### END CONDITION
                 game_on = False
                 break
