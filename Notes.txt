@@ -31,3 +31,5 @@ Player does not have enough account balance for next round
 ### Very close but there is something wrong with the logic 
 
 ### Dealer is not taking ace adjusted value into account. It is taking the final value without subtracting
+
+### Dealer needs to hit first and then check if they are bust and aces
