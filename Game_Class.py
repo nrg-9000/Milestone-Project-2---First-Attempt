@@ -31,23 +31,45 @@ dealer_hand = []
 round_number = 0
 game_on = True
 player_choice = False
-player_value = 0
 inhand_aces = 0
 hand_value = 0
 dealer_aces = 0
 dealer_value = 0
+play_on = False
 
 
 while game_on == True:
 
+    while True: # This is to continue playing next round
+        try:
+            play_on = input('Do you want to Play? (Y/N): ')
+            player_choice = player_choice.upper()
+
+        except:
+            print('That is not a valid choice. Please try again')
+
+        else:
+            if player_choice == 'Y':
+                break
+            elif player_choice == 'N':
+                game_on = False
+                break
+
+    # Checking flag to break outer while loop
+    if not game_on: 
+        break
+
     # Checking if player has enough account balance to continue round
     if current_player.balance_check() <= 0:
         print(f'{player_name} does not have enough balance in their account')
-        game_on = False
+        game_on = False # This should end game as no more rounds are possible
         break
     else:
         pass
-
+    
+    # Checking flag to break outer while loop
+    if not game_on: 
+        break
 
     # Starting a new round
     round_number += 1
@@ -101,9 +123,10 @@ while game_on == True:
                             continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
-                    game_on = False
-                    break
-                    
+
+                    game_on = False ### Need a play-on counter to restart outer while loop
+                    continue
+                
 
                 else:
                     inhand_aces = 0
