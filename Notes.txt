@@ -33,3 +33,7 @@ Player does not have enough account balance for next round
 ### Dealer is not taking ace adjusted value into account. It is taking the final value without subtracting
 
 ### Dealer needs to hit first and then check if they are bust and aces
+
+### Hand value is coming Zero on first line
+
+### Edge case happened where ACe was taken as 1 even though it should be 11

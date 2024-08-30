@@ -43,15 +43,15 @@ while game_on == True:
     while True: # This is to continue playing next round
         try:
             play_on = input('Do you want to Play? (Y/N): ')
-            player_choice = player_choice.upper()
+            play_on = play_on.upper()
 
         except:
             print('That is not a valid choice. Please try again')
 
         else:
-            if player_choice == 'Y':
+            if play_on == 'Y':
                 break
-            elif player_choice == 'N':
+            elif play_on == 'N':
                 game_on = False
                 break
 
@@ -82,6 +82,7 @@ while game_on == True:
     player_hand.extend(game_deck.player_start())
 
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
+    print(f'Player Hand Value: {hand_value}') # For Check
     
     # Initialising dealer hand
     dealer_hand.extend(game_deck.dealer_start())
@@ -120,9 +121,11 @@ while game_on == True:
                             continue
                         if hand_value < 21:
                             inhand_aces = 0
+                            print(f'Player Hand Value: {hand_value}') # For Check
                             continue
                     
                     print(f'{player_name} is bust. Player Loses!') ### END CONDITION
+                    print(f'Player Hand Value: {hand_value}') # For Check
 
                     game_on = False ### Need a play-on counter to restart outer while loop
                     continue
@@ -130,6 +133,7 @@ while game_on == True:
 
                 else:
                     inhand_aces = 0
+                    print(f'Player Hand Value: {hand_value}') # For Check
                     continue
 
             elif player_choice == 'S':
@@ -146,7 +150,9 @@ while game_on == True:
                          hand_value -= 10
                          inhand_aces -= 1
                          continue
-                     
+
+                print(f'Player Hand Value: {hand_value}')  # For Check
+
                 break
 
             elif player_choice == 'P': ###TEST
