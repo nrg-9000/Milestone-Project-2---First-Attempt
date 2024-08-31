@@ -82,7 +82,7 @@ while game_on == True:
     player_hand.extend(game_deck.player_start())
 
     print(f'Player has {player_hand[0]} and {player_hand[1]}.')
-    print(f'Player Hand Value: {hand_value}') # For Check
+    print(f'Player Hand Value: {Logic_Class.values_sum(player_hand)}') # For Check
     
     # Initialising dealer hand
     dealer_hand.extend(game_deck.dealer_start())
@@ -128,7 +128,7 @@ while game_on == True:
                     print(f'Player Hand Value: {hand_value}') # For Check
 
                     game_on = False ### Need a play-on counter to restart outer while loop
-                    continue
+                    break
                 
 
                 else:
@@ -144,12 +144,14 @@ while game_on == True:
 
                 hand_value = Logic_Class.values_sum(player_hand)
 
-                # Logic to change Aces from 11 to 1
-                if inhand_aces != 0:
-                    while inhand_aces != 0:
-                         hand_value -= 10
-                         inhand_aces -= 1
-                         continue
+                if hand_value >= 21: # Without this the ace logic was being run everytime
+                    
+                    # Logic to change Aces from 11 to 1
+                    if inhand_aces != 0:
+                        while inhand_aces != 0:
+                            hand_value -= 10
+                            inhand_aces -= 1
+                            continue
 
                 print(f'Player Hand Value: {hand_value}')  # For Check
 
@@ -174,6 +176,7 @@ while game_on == True:
     
     #Checking to see if Dealer has won in first hand
     if hand_value < Logic_Class.values_sum(dealer_hand): # Comparing with 'hand_value' to adjust for aces
+        print(f'Dealer Hand Value: {Logic_Class.values_sum(dealer_hand)}') # For Check
         print('Dealer wins! Player Loses!') ### END CONDITION
         game_on = False
         break
@@ -183,6 +186,8 @@ while game_on == True:
         print('Dealer Hit!')
         dealer_hand.extend(game_deck.hit()) # Adding another card
         print(f'Dealer Hand: {dealer_hand}')
+        print(f'Dealer Hand Value: {Logic_Class.values_sum(dealer_hand)}') # For Check
+
 
         dealer_value = Logic_Class.values_sum(dealer_hand)
 
@@ -202,11 +207,13 @@ while game_on == True:
                 if dealer_value < 21:
                     dealer_aces = 0
                     continue
+
             print('Dealer is bust. Player wins!!!') ### END CONDITION
             game_on = False
             break
 
         elif hand_value < Logic_Class.values_sum(dealer_hand): #Checking to see if Dealer has won
+            print(f'Dealer Hand Value: {Logic_Class.values_sum(dealer_hand)}') # For Check
             print('Dealer wins! Player Loses!') ### END CONDITION
             game_on = False
             break
