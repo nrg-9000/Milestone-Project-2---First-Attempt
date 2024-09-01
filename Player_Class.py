@@ -40,10 +40,12 @@ class Player:
                     print('Please enter a positive, non-zero amount')
                     continue             
 
-
+    # This will not be needed as there is not draw                
+    '''                
     def bet_back(self, bet):  # This is to get back the original bet amount incase of a draw
         self.bank = self.bank + bet  
-        
+    '''
+         
         
     def win_back(self, bet):  # This is to get back twice the win amount after winning the round
         self.bank = self.bank + (2 * bet)
